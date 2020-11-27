@@ -1,11 +1,13 @@
 import React from 'react'
-import { Dashboard } from 'pages/Dashboard'
+import { Layout } from './components/Layout/index'
+import GlobalStyles from 'styles/GlobalStyles'
 
 function App() {
   return (
-    <div className="App">
-      <Dashboard />
-    </div>
+    <>
+      <GlobalStyles />
+      <Layout />
+    </>
   )
 }
 
