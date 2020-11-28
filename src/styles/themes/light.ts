@@ -2,7 +2,7 @@ import { Theme } from '../styled.d'
 
 export const light: Theme = {
   title: 'light',
-  
+
   colors: {
     primary: '#dcdcdc',
     secondary: '#ffffff',

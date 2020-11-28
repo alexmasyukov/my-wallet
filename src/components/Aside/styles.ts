@@ -18,7 +18,7 @@ export const Header = styled.header`
 `
 
 export const Title = styled.h3`
-  color: ${(props) => props.theme.colors.white};
+  color: ${props => props.theme.colors.white};
   margin-left: 10px;
 `
 
@@ -34,7 +34,7 @@ export const MenuContainter = styled.nav`
 `
 
 export const MenuItemLink = styled.a`
-  color: ${(props) => props.theme.colors.info};
+  color: ${props => props.theme.colors.info};
   text-decoration: none;
   transition: opacity 0.3s;
   font-size: 1.1em;

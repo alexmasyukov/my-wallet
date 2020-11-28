@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+interface TitleContainerProps {
+  lineColor: string
+}
+
 export const Container = styled.div`
   width: 100%;
 
@@ -8,15 +12,15 @@ export const Container = styled.div`
   margin-bottom: 25px;
 `
 
-export const TitleContainer = styled.div`
+export const TitleContainer = styled.div<TitleContainerProps>`
   > h1 {
-    color: ${(props) => props.theme.colors.white};
+    color: ${props => props.theme.colors.white};
 
     &:after {
       content: '';
       display: block;
       width: 55px;
-      border-bottom: 5px solid ${(props) => props.theme.colors.warning};
+      border-bottom: 5px solid ${props => props.lineColor};
     }
   }
 `

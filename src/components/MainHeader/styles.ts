@@ -9,14 +9,13 @@ export const Container = styled.div`
   padding: 0 10px;
 
   ${({ theme }) => css`
-    
     background-color: ${theme.colors.secondary};
     border-bottom: 1px solid ${theme.colors.gray};
   `}
 `
 
 export const Profile = styled.div`
-  color: ${props => props.theme.colors.white}
+  color: ${props => props.theme.colors.white};
 `
 
 export const UserName = styled.span``
