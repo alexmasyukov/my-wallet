@@ -3,13 +3,13 @@ import { Container, ToggleLabel, ToggleSelector } from './styles'
 
 export const Toggle: FC = () => (
   <Container>
-    <ToggleLabel>Light</ToggleLabel>
+    <ToggleLabel>День</ToggleLabel>
     <ToggleSelector
       checked
       onChange={() => console.log('chech')}
       checkedIcon={false}
       uncheckedIcon={false}
     />
-    <ToggleLabel>Dark</ToggleLabel>
+    <ToggleLabel>Ночь</ToggleLabel>
   </Container>
 )

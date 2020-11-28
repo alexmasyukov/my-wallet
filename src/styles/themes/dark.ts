@@ -10,7 +10,7 @@ export const dark: Theme = {
 
     white: '#fff',
     black: '#000',
-    gray: '#bfbfbf',
+    gray: '#222',
 
     success: '#4e41f0',
     info: '#f7931b',
