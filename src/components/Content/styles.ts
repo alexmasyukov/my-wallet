@@ -1,7 +1,10 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Container = styled.div`
   grid-area: CT;
 
-  background-color: ${props => props.theme.colors.secondary}
+  ${({ theme }) => css`
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.secondary};
+  `}
 `
