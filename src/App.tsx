@@ -4,8 +4,9 @@ import GlobalStyles from 'styles/GlobalStyles'
 import { ThemeProvider } from 'styled-components'
 import { dark } from './styles/themes/dark'
 // import { light } from './styles/themes/light'
-import { ContentHeader } from 'components/ContentHeader'
-import { Dashboard } from 'pages/Dashboard'
+// import { ContentHeader } from 'components/ContentHeader'
+// import { Dashboard } from 'pages/Dashboard'
+import { List } from './pages/List/index'
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <GlobalStyles />
       <Layout>
         {/* <ContentHeader /> */}
-        <Dashboard />
+        <List />
       </Layout>
     </ThemeProvider>
   )
