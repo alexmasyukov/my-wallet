@@ -1,9 +1,37 @@
-import React, { FC, useMemo } from 'react'
+import React, { FC, useMemo, useState, useEffect } from 'react'
 import { ContentHeader } from 'components/ContentHeader'
 import { SelectInput } from 'components/SelectInput'
 import { Container, Content, Filters } from './styles'
 import { HistoryFinanceCard } from 'components/HistoryFinanceCard'
 import { RouteComponentProps } from 'react-router-dom'
+import { getProperty } from 'utils/helpers'
+import gains from 'repositories/gains'
+import expenses from 'repositories/expenses'
+
+type Links = 'income' | 'expense'
+type MatchParams = { type: Links }
+interface Data {
+  description: string
+  amount: string
+  type: string
+  frequency: string
+  date: string
+}
+
+interface TransformatedData {
+  id: number
+  description: string
+  amountFormatted: string
+  frequency: string
+  dataFormatted: string
+  tagColor: string
+}
+
+interface Title {
+  title: string
+  lineColor: string
+  data: Data[]
+}
 
 const months = [
   { value: '9', label: 'Сентябрь' },
@@ -17,52 +45,45 @@ const years = [
   { value: 2018, label: 2018 }
 ]
 
-const c = (
-  <HistoryFinanceCard
-    tagColor="#e44c4e"
-    title="tessts"
-    subtitle="12/04/2020"
-    amount="R$ 130,00"
-  />
-)
-
-const a = Array(50).fill(c)
-
-type Links = 'income' | 'expense'
-
-interface Title {
-  title: string
-  lineColor: string
-}
-
 // todo: Как получать цвета из темы?
 const titles: {
-  [key: string]: Title ////[K in Links]: Title
+  [key: string]: Title // [K in Links]: Title
 } = {
   income: {
     title: 'Доход',
-    lineColor: '#2b2727'
+    lineColor: '#2b2727',
+    data: gains
   },
   expense: {
     title: 'Расход',
-    lineColor: '#f83'
+    lineColor: '#f83',
+    data: expenses
   }
 }
 
-type Params = { type: Links }
+// todo: сделай проверку на 404
+export const List: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
+  const [data, setData] = useState<TransformatedData[]>([])
 
-function getProperty<T, K extends keyof T>(o: T, propertyName: K): T[K] {
-  return o[propertyName] // o[propertyName] is of type T[K]
-}
-
-export const List: FC<RouteComponentProps<Params>> = ({ match }) => {
   const { type } = match.params
-  // todo: сделай проверку на 404
-  const title = useMemo(() => getProperty(titles, type), [type])
+  const page = useMemo(() => getProperty(titles, type), [type])
+
+  useEffect(() => {
+    const responses = page.data.map<TransformatedData>((item, idx) => ({
+      id: idx,
+      description: item.description,
+      amountFormatted: item.amount,
+      frequency: item.frequency,
+      dataFormatted: item.date,
+      tagColor: item.frequency === 'recorrente' ? '#4e41f0' : '#e44c4e'
+    }))
+
+    setData(responses)
+  }, [page.data])
 
   return (
     <Container>
-      <ContentHeader title={title.title} lineColor={title.lineColor}>
+      <ContentHeader title={page.title} lineColor={page.lineColor}>
         <SelectInput options={months} />
         <SelectInput options={years} />
       </ContentHeader>
@@ -76,7 +97,17 @@ export const List: FC<RouteComponentProps<Params>> = ({ match }) => {
         </button>
       </Filters>
 
-      <Content>{a.map(c => c)}</Content>
+      <Content>
+        {data.map(item => (
+          <HistoryFinanceCard
+            key={item.id}
+            tagColor={item.tagColor}
+            title={item.description}
+            subtitle={item.dataFormatted}
+            amount={item.amountFormatted}
+          />
+        ))}
+      </Content>
     </Container>
   )
 }
