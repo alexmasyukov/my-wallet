@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from 'react'
+import React, { FC, useMemo } from 'react'
 import { Container, Profile, Welcome, UserName } from './styles'
 import { random } from 'utils/helpers'
 import { emojis } from '../../utils/emojis'

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 export const Container = styled.div`
@@ -33,7 +34,7 @@ export const MenuContainter = styled.nav`
   margin-top: 25px;
 `
 
-export const MenuItemLink = styled.a`
+export const MenuItemLink = styled(Link)`
   color: ${props => props.theme.colors.info};
   text-decoration: none;
   transition: opacity 0.3s;

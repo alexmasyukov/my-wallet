@@ -19,27 +19,27 @@ export const Aside: FC = () => {
   return (
     <Container>
       <Header>
-        <LogoImage src={logo} alt='My Wallet' />
+        <LogoImage src={logo} alt="My Wallet" />
         <Title>Мой кошелек</Title>
       </Header>
 
       <MenuContainter>
-        <MenuItemLink href='#'>
+        <MenuItemLink to="/dashboard">
           <MdDashboard />
           Статистика
         </MenuItemLink>
 
-        <MenuItemLink href='#'>
+        <MenuItemLink to="/list/income">
           <MdArrowUpward />
           Доходы
         </MenuItemLink>
 
-        <MenuItemLink href='#'>
+        <MenuItemLink to="/list/expense">
           <MdArrowDownward />
           Расходы
         </MenuItemLink>
 
-        <MenuItemLink href='#'>
+        <MenuItemLink to="/exit">
           <MdExitToApp />
           Выход
         </MenuItemLink>
